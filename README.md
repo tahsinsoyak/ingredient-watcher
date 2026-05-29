@@ -6,6 +6,20 @@ A free, privacy-friendly Chrome extension that highlights user-defined ingredien
 
 ---
 
+## 📸 Screenshots
+
+<p align="center">
+  <img src="screenshots/popup.png" alt="Popup with scan results" width="280" />
+  &nbsp;&nbsp;&nbsp;
+  <img src="screenshots/options-page.png" alt="Options page with watchlist editor" width="600" />
+</p>
+
+<p align="center">
+  <em>Left: Popup showing matched ingredients on a product page &nbsp;·&nbsp; Right: Options page with preset packs and watchlist editor</em>
+</p>
+
+---
+
 ## ✨ Features
 
 - **Personal Watchlist** — Add ingredients and terms you want to avoid
