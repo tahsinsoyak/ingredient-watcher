@@ -26,7 +26,7 @@ A free, privacy-friendly Chrome extension that highlights user-defined ingredien
 - **Smart Matching** — Case-insensitive, alias-aware, INCI-compatible matching
 - **Free-From Detection** — Distinguishes "contains gluten" from "gluten-free"
 - **Page Highlighting** — Visual highlights on matched ingredients with severity colors
-- **Preset Packs** — Quick-start packs for allergens, vegan, cosmetics, and cleaning products
+- **Preset Packs (8 packs, 184 terms)** — Allergens, vegan, cosmetics, sensitive skin, cleaning, food additives, palm oil, caffeine — with Turkish+English aliases
 - **Category Organization** — Food, Cosmetics, Cleaning, Allergens, Vegan, Sensitive Skin, Custom
 - **False Positive Controls** — Mark and manage false positive matches
 - **Right-Click Check** — Select any text, right-click, and "Check with Ingredient Watchlist"
@@ -182,12 +182,16 @@ npm run test
 
 ## 🎨 Preset Packs
 
-| Pack | Category | Terms |
-|---|---|---|
-| Common Food Allergens | 🍎 Allergens | Milk, Egg, Fish, Shellfish, Tree Nuts, Peanuts, Wheat, Gluten, Soy, Sesame |
-| Vegan / Animal-Derived | 🌱 Vegan | Gelatin, Collagen, Carmine, Lanolin, Beeswax, Casein, Whey, Shellac, Tallow |
-| Cosmetics Watchlist | 💄 Cosmetics | Paraben, Fragrance, Alcohol Denat, SLS, SLES, Phthalate, Formaldehyde, Triclosan |
-| Cleaning Products | 🧴 Cleaning | Chlorine, Ammonia, Bleach, Fragrance, Quats, Phosphates, Optical Brighteners |
+| Pack | Category | Terms | Lang |
+|---|---|---|---|---|
+| Common Food Allergens | 🍎 Allergens | 20 terms — Milk, Egg, Fish, Shellfish, Tree Nuts, Peanuts, Wheat, Gluten, Soy, Sesame, Celery, Mustard, Lupin, Molluscs, Sulphites, Corn, Coconut, Garlic, Kiwi, Banana | 🇹🇷🇬🇧 |
+| Vegan / Animal-Derived | 🌱 Vegan | 25 terms — Gelatin, Collagen, Carmine, Lanolin, Beeswax, Casein, Whey, Shellac, Tallow, Honey, Keratin, Silk, Elastin, Rennet, Isinglass, Squalene, Vitamin D3, Musk, Ambergris, Bone Char, Ghee, Guanine | 🇹🇷🇬🇧 |
+| Cosmetics Watchlist | 💄 Cosmetics | 40 terms — Paraben, Fragrance, SLS, SLES, Phthalate, Formaldehyde, Triclosan, Oxybenzone, Octinoxate, Coal Tar, Toluene, MIT, Aluminum, Microplastics, and more | 🇹🇷🇬🇧 |
+| Sensitive Skin Irritants | 🧬 Sensitive Skin | 26 terms — Fragrance, Alcohol, SLS, Retinol, Glycolic Acid, Salicylic Acid, Benzoyl Peroxide, Essential Oils (eucalyptus, peppermint, tea tree, cinnamon, clove, lavender), Vitamin C, Niacinamide | 🇹🇷🇬🇧 |
+| Cleaning Products | 🧴 Cleaning | 19 terms — Chlorine, Ammonia, Bleach, Fragrance, Quats, Phosphates, Optical Brighteners, Triclosan, Nonylphenol, 2-Butoxyethanol, EDTA, Borax, Phenol, Chloramine | 🇹🇷🇬🇧 |
+| Food Additives | 🍎 Food | 30 terms — MSG, Aspartame, HFCS, Sodium Nitrite/Nitrate, Artificial Colors (Tartrazine, Sunset Yellow, Allura Red, Brilliant Blue), Potassium Bromate, BHA, BHT, Titanium Dioxide, Carrageenan, and more | 🇹🇷🇬🇧 |
+| Palm Oil & Derivatives | 🌴 Food / Cosmetics | 13 terms — Palm Oil, Palm Glyceride, Palmitate, Cetyl/Stearyl/Cetearyl Alcohol, Glyceryl Stearate, Stearate, Sorbitan, Sodium Palmate | 🇹🇷🇬🇧 |
+| Caffeine & Stimulants | ☕ Food | 11 terms — Caffeine, Guarana, Taurine, Green Tea Extract, Yerba Mate, Theobromine, Kola Nut, Ginseng, Energy Blend | 🇹🇷🇬🇧 |
 
 > These are convenient keyword lists only — not medical, safety, or dietary advice.
 
