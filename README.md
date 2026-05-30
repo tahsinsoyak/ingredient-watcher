@@ -32,6 +32,7 @@ A free, privacy-friendly Chrome extension that highlights user-defined ingredien
 - **Right-Click Check** — Select any text, right-click, and "Check with Ingredient Watchlist"
 - **Domain Settings** — Configure per-site auto-scan preferences
 - **Dark/Light Mode** — System-aware theme with manual override
+- **Türkçe Dil Desteği** — Tamamen Türkçeleştirilmiş arayüz (Turkish UI with English backup)
 - **Export/Import** — Backup and restore your watchlist as JSON
 - **Privacy-First** — Everything runs locally, nothing leaves your browser
 - **Minimal Permissions** — Only `storage`, `activeTab`, `scripting`, and `contextMenus`
