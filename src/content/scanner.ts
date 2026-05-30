@@ -7,6 +7,7 @@ import type {
   MatchSeverity,
   ExtensionMessage,
   ScanPageMessage,
+  CheckSelectedTextMessage,
 } from '../shared/types/ingredients';
 import { matchIngredients } from '../shared/lib/matchIngredients';
 import { extractDomain } from '../shared/lib/domain';
@@ -173,6 +174,26 @@ chrome.runtime.onMessage.addListener(
           const payload = message.payload as { matchId: string } | undefined;
           if (payload?.matchId) scrollToHighlight(payload.matchId);
           sendResponse({ success: true });
+          return false;
+        }
+
+        case 'CHECK_SELECTED_TEXT': {
+          const msg = message as CheckSelectedTextMessage;
+          const { matches, terms } = msg.payload;
+
+          if (matches.length > 0) {
+            const highlightEntries = matches.map((m) => {
+              const term = terms.find((t) => t.id === m.termId);
+              return {
+                matchedText: m.matchedText,
+                severity: m.severity,
+                termLabel: term?.label ?? m.matchedText,
+              };
+            });
+            highlightMatches(highlightEntries);
+          }
+
+          sendResponse({ success: true, matchCount: matches.length });
           return false;
         }
 

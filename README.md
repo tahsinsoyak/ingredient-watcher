@@ -29,11 +29,12 @@ A free, privacy-friendly Chrome extension that highlights user-defined ingredien
 - **Preset Packs** — Quick-start packs for allergens, vegan, cosmetics, and cleaning products
 - **Category Organization** — Food, Cosmetics, Cleaning, Allergens, Vegan, Sensitive Skin, Custom
 - **False Positive Controls** — Mark and manage false positive matches
+- **Right-Click Check** — Select any text, right-click, and "Check with Ingredient Watchlist"
 - **Domain Settings** — Configure per-site auto-scan preferences
 - **Dark/Light Mode** — System-aware theme with manual override
 - **Export/Import** — Backup and restore your watchlist as JSON
 - **Privacy-First** — Everything runs locally, nothing leaves your browser
-- **Minimal Permissions** — Only `storage`, `activeTab`, and `scripting`
+- **Minimal Permissions** — Only `storage`, `activeTab`, `scripting`, and `contextMenus`
 
 ---
 
@@ -195,11 +196,11 @@ npm run test
 ## 🔐 Chrome Permissions
 
 | Permission | Why |
-|---|---|
+|---|---|---|
 | `storage` | Saves your local watchlist, preferences, and false-positive rules |
 | `activeTab` | Allows scanning the current page only after user action |
 | `scripting` | Injects the scanner/highlighter into the current page after user action |
-| `contextMenus` (optional) | Right-click "Check selected text" feature |
+| `contextMenus` | Right-click "Check with Ingredient Watchlist" feature |
 
 ---
 
@@ -237,7 +238,7 @@ Ingredient Watchlist is a privacy-friendly Chrome extension that helps you spot 
 ### Phase 1 — MVP ✅
 Manifest V3, popup UI, options page, local watchlist editor, manual scan, ingredient matching engine, page highlighting, match list, false-positive marking, local storage, dark/light mode, tests
 
-### Phase 2 — Product Page Polish
+### Phase 2 — Product Page Polish ✅
 Better text extraction, selected text context menu, preset packs, domain settings, auto-scan allowed domains, badge match count
 
 ### Phase 3 — Advanced (Optional)

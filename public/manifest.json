@@ -20,9 +20,7 @@
   "permissions": [
     "storage",
     "activeTab",
-    "scripting"
-  ],
-  "optional_permissions": [
+    "scripting",
     "contextMenus"
   ],
   "icons": {

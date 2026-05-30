@@ -4,6 +4,7 @@ import type {
   ScanResultMessage,
   HighlightMatchMessage,
   ClearHighlightsMessage,
+  CheckSelectedTextMessage,
   WatchlistTerm,
   FalsePositiveRule,
   ExtensionSettings,
@@ -11,6 +12,7 @@ import type {
   MatchSeverity,
 } from '../shared/types/ingredients';
 import { STORAGE_KEYS, DEFAULT_SETTINGS } from '../shared/types/ingredients';
+import { matchIngredients, resetMatchIdCounter } from '../shared/lib/matchIngredients';
 import { createMessageRouter } from './messageRouter';
 import { updateBadge, clearBadge } from './badgeManager';
 
@@ -193,9 +195,71 @@ chrome.storage.onChanged.addListener((changes, areaName) => {
   }
 });
 
+// ─── Context Menu ───────────────────────────────────────────────
+
+async function createContextMenu(): Promise<void> {
+  await chrome.contextMenus.removeAll();
+  chrome.contextMenus.create({
+    id: 'check-ingredient',
+    title: 'Check with Ingredient Watchlist',
+    contexts: ['selection'],
+  });
+}
+
+chrome.contextMenus.onClicked.addListener(async (info, tab) => {
+  if (info.menuItemId !== 'check-ingredient') return;
+  if (!info.selectionText || !tab?.id || !tab.url) return;
+  if (
+    tab.url.startsWith('chrome://') ||
+    tab.url.startsWith('chrome-extension://') ||
+    tab.url.startsWith('about:')
+  ) return;
+
+  const selectedText = info.selectionText.trim();
+  if (!selectedText) return;
+
+  try {
+    await injectContentScript(tab.id);
+  } catch {
+    return;
+  }
+
+  const data = await loadScanData();
+  if (data.terms.length === 0) return;
+
+  resetMatchIdCounter();
+
+  const domain = (() => {
+    try { return new URL(tab.url!).hostname; } catch { return ''; }
+  })();
+
+  const matches = matchIngredients(
+    selectedText,
+    data.terms,
+    data.falsePositives,
+    domain,
+    data.settings.freeFromDetection
+  );
+
+  if (matches.length === 0) return;
+
+  const checkMessage: CheckSelectedTextMessage = {
+    type: 'CHECK_SELECTED_TEXT',
+    payload: { matches, terms: data.terms, selectedText },
+  };
+
+  try {
+    await chrome.tabs.sendMessage(tab.id, checkMessage);
+  } catch {
+    // Content script not ready
+  }
+});
+
 // ─── Install / Startup ──────────────────────────────────────────
 
 chrome.runtime.onInstalled.addListener(async (details) => {
+  await createContextMenu();
+
   if (details.reason === 'install') {
     const existing = await chrome.storage.local.get([
       STORAGE_KEYS.SETTINGS,

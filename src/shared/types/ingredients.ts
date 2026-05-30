@@ -102,7 +102,8 @@ export type MessageType =
   | 'GET_SETTINGS'
   | 'AUTO_SCAN'
   | 'PING'
-  | 'CONTENT_SCRIPT_READY';
+  | 'CONTENT_SCRIPT_READY'
+  | 'CHECK_SELECTED_TEXT';
 
 export interface ExtensionMessage {
   type: MessageType;
@@ -126,6 +127,15 @@ export interface ScanResultMessage extends ExtensionMessage {
 export interface HighlightMatchMessage extends ExtensionMessage {
   type: 'HIGHLIGHT_MATCH';
   payload: { matchId: string; matchedText?: string };
+}
+
+export interface CheckSelectedTextMessage extends ExtensionMessage {
+  type: 'CHECK_SELECTED_TEXT';
+  payload: {
+    matches: IngredientMatch[];
+    terms: WatchlistTerm[];
+    selectedText: string;
+  };
 }
 
 export interface ClearHighlightsMessage extends ExtensionMessage {
