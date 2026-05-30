@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useWatchlistStore } from '@shared/store/useWatchlistStore';
 import { useSettingsStore } from '@shared/store/useSettingsStore';
-import { strings } from '@shared/lib/i18n';
+import { useStrings } from '@shared/lib/i18n';
 import {
   LeafIcon,
   ClipboardIcon,
@@ -32,21 +32,11 @@ type SectionId =
   | 'privacy'
   | 'appearance';
 
-interface NavItem {
+type NavItem = {
   id: SectionId;
   label: string;
   icon: React.ReactNode;
-}
-
-const NAV_ITEMS: NavItem[] = [
-  { id: 'watchlist', label: strings.options.watchlist, icon: <ClipboardIcon className="w-4 h-4" /> },
-  { id: 'presets', label: strings.options.presetPacks, icon: <PackageIcon className="w-4 h-4" /> },
-  { id: 'domains', label: strings.options.domainSettings, icon: <GlobeIcon className="w-4 h-4" /> },
-  { id: 'matching', label: strings.options.matching, icon: <TargetIcon className="w-4 h-4" /> },
-  { id: 'false-positives', label: strings.options.falsePositives, icon: <BanIcon className="w-4 h-4" /> },
-  { id: 'privacy', label: strings.options.privacyData, icon: <LockIcon className="w-4 h-4" /> },
-  { id: 'appearance', label: strings.options.appearance, icon: <PaletteIcon className="w-4 h-4" /> },
-];
+};
 
 function renderSection(section: SectionId): React.ReactNode {
   switch (section) {
@@ -81,6 +71,17 @@ export function OptionsApp(): React.ReactElement {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const loadTerms = useWatchlistStore((s) => s.loadTerms);
   const loadSettings = useSettingsStore((s) => s.loadSettings);
+  const strings = useStrings();
+
+  const NAV_ITEMS = useMemo<NavItem[]>(() => [
+    { id: 'watchlist', label: strings.options.watchlist, icon: <ClipboardIcon className="w-4 h-4" /> },
+    { id: 'presets', label: strings.options.presetPacks, icon: <PackageIcon className="w-4 h-4" /> },
+    { id: 'domains', label: strings.options.domainSettings, icon: <GlobeIcon className="w-4 h-4" /> },
+    { id: 'matching', label: strings.options.matching, icon: <TargetIcon className="w-4 h-4" /> },
+    { id: 'false-positives', label: strings.options.falsePositives, icon: <BanIcon className="w-4 h-4" /> },
+    { id: 'privacy', label: strings.options.privacyData, icon: <LockIcon className="w-4 h-4" /> },
+    { id: 'appearance', label: strings.options.appearance, icon: <PaletteIcon className="w-4 h-4" /> },
+  ], [strings]);
 
   useEffect(() => {
     void loadTerms();

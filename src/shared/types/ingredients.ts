@@ -16,6 +16,7 @@ export type ScanMode = 'manual' | 'selected_text' | 'auto_allowed_domain';
 
 // ─── Theme ───────────────────────────────────────────────────────
 export type ThemeMode = 'light' | 'dark' | 'system';
+export type Locale = 'en' | 'tr';
 
 // ─── Watchlist Term ──────────────────────────────────────────────
 export interface WatchlistTerm {
@@ -83,6 +84,7 @@ export interface PresetPack {
 // ─── Extension Settings ──────────────────────────────────────────
 export interface ExtensionSettings {
   theme: ThemeMode;
+  locale: 'en' | 'tr';
   strictMode: boolean;
   freeFromDetection: boolean;
   accentInsensitive: boolean;
@@ -161,6 +163,7 @@ export const STORAGE_KEYS = {
 // ─── Default Settings ────────────────────────────────────────────
 export const DEFAULT_SETTINGS: ExtensionSettings = {
   theme: 'system',
+  locale: 'en',
   strictMode: false,
   freeFromDetection: true,
   accentInsensitive: true,

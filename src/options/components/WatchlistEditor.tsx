@@ -3,7 +3,7 @@ import { useWatchlistStore } from '@shared/store/useWatchlistStore';
 import type { IngredientCategory, MatchSeverity } from '@shared/types/ingredients';
 import { CATEGORIES, getCategoryMeta } from '@shared/constants/categories';
 import { sanitizeTerm, validateTerm } from '@shared/lib/sanitize';
-import { strings } from '@shared/lib/i18n';
+import { useStrings } from '@shared/lib/i18n';
 import { InboxIcon, PlusIcon, TrashIcon } from '@shared/components/Icons';
 import Switch from '@shared/components/Switch';
 
@@ -192,6 +192,7 @@ function TermForm({
 
 // ─── Main WatchlistEditor ────────────────────────────────────────
 export function WatchlistEditor(): React.ReactElement {
+  const strings = useStrings();
   const { terms, loading, addTerm, updateTerm, deleteTerm, toggleTerm } = useWatchlistStore();
   const [search, setSearch] = useState('');
   const [showAddForm, setShowAddForm] = useState(false);

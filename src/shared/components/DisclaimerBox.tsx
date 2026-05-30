@@ -1,5 +1,5 @@
 import React from 'react';
-import { strings } from '@shared/lib/i18n';
+import { useStrings } from '@shared/lib/i18n';
 import { WarningIcon } from '@shared/components/Icons';
 
 // ─── Types ───────────────────────────────────────────────────────
@@ -15,6 +15,7 @@ export const DisclaimerBox: React.FC<DisclaimerBoxProps> = ({
   compact = false,
   className = '',
 }) => {
+  const strings = useStrings();
   return (
     <div
       role="note"

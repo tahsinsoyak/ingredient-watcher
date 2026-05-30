@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useWatchlistStore } from '@shared/store/useWatchlistStore';
 import { useScanStore } from '@shared/store/useScanStore';
-import { strings } from '@shared/lib/i18n';
+import { useStrings } from '@shared/lib/i18n';
 import Button from '@shared/components/Button';
 import DisclaimerBox from '@shared/components/DisclaimerBox';
 import { LeafIcon, GearIcon } from '@shared/components/Icons';
@@ -13,6 +13,7 @@ import { QuickAddTerm } from './components/QuickAddTerm';
 import { ThemeToggle } from './components/ThemeToggle';
 
 export function PopupApp(): React.ReactElement {
+  const strings = useStrings();
   const loadTerms = useWatchlistStore((s) => s.loadTerms);
   const loadLastScanResult = useScanStore((s) => s.loadLastScanResult);
   const scanResult = useScanStore((s) => s.scanResult);

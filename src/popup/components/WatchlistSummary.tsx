@@ -2,9 +2,10 @@ import React from 'react';
 import { useWatchlistStore } from '@shared/store/useWatchlistStore';
 import Card from '@shared/components/Card';
 import Badge from '@shared/components/Badge';
-import { strings } from '@shared/lib/i18n';
+import { useStrings } from '@shared/lib/i18n';
 
 export function WatchlistSummary(): React.ReactElement {
+  const strings = useStrings();
   const terms = useWatchlistStore((s) => s.terms);
   const activeTermsCount = terms.filter((t) => t.enabled).length;
 

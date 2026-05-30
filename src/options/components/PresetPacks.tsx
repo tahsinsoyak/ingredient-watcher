@@ -3,11 +3,12 @@ import { useWatchlistStore } from '@shared/store/useWatchlistStore';
 import { useSettingsStore } from '@shared/store/useSettingsStore';
 import { PRESET_PACKS } from '@shared/constants/presetIngredients';
 import { getCategoryMeta } from '@shared/constants/categories';
-import { strings } from '@shared/lib/i18n';
+import { useStrings } from '@shared/lib/i18n';
 import { WarningIcon, CheckIcon } from '@shared/components/Icons';
 import type { PresetPack } from '@shared/types/ingredients';
 
 function PackCard({ pack }: { pack: PresetPack }): React.ReactElement {
+  const strings = useStrings();
   const [expanded, setExpanded] = useState(false);
   const [animating, setAnimating] = useState(false);
   const enabledPacks = useSettingsStore((s) => s.enabledPresetPacks);
@@ -143,6 +144,7 @@ function PackCard({ pack }: { pack: PresetPack }): React.ReactElement {
 }
 
 export function PresetPacks(): React.ReactElement {
+  const strings = useStrings();
   return (
     <div className="space-y-6">
       {/* Disclaimer */}
